@@ -10,6 +10,17 @@ import Foundation
 import UIKit
 
 
+// Geting of current date
+func getCurentDate () -> String {
+    let date = Calendar.current.date(byAdding: .day, value: 0, to: Date())
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MMMM, dd, yyyy"
+    
+    return dateFormatter.string(from: date!)
+}
+
+
+//Gering Image file from Web
     func getImageFromWeb(_ urlString: String, closure: @escaping (UIImage?) -> ()) {
         guard let url = URL(string: urlString) else {
             return closure(nil)
@@ -33,8 +44,7 @@ import UIKit
         }; task.resume()
     }
 
-
-//import SwiftUI
+//import SwiftUI //not usabile by require of Project
 //extension UIImageView {
 //    func load(url: URL) {
 //        DispatchQueue.global().async { [weak self] in
@@ -48,3 +58,28 @@ import UIKit
 //        }
 //    }
 //}
+
+
+func getTimeByInterval(timeZone: TimeZone, interval: Int) -> String {
+    let date = Date(timeIntervalSince1970: TimeInterval(interval))
+    let dateFormatter = DateFormatter()
+    dateFormatter.timeZone = timeZone
+    dateFormatter.locale = NSLocale.current
+    dateFormatter.dateFormat = "HH:mm:ss"
+    return dateFormatter.string(from: date)
+}
+
+func setWindDirection(degree : Float) -> String {
+    let directions = ["Nord", "Nord-East", "East", "South-East", "South", "South-West", "West", "Nord-West"]
+    let i: Int = Int((degree + 33.75)/45)
+    return directions[i % 8]
+}
+
+func getDateByInterval(timeZone: TimeZone, interval: Int) -> String {
+    let date = Date(timeIntervalSince1970: TimeInterval(interval))
+    let dateFormatter = DateFormatter()
+    dateFormatter.timeZone = timeZone
+    dateFormatter.locale = NSLocale.current
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    return dateFormatter.string(from: date)
+}

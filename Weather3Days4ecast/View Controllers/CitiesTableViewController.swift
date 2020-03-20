@@ -14,17 +14,12 @@ class CitiesTableViewController: UITableViewController {
     
     fileprivate var weatherSama: Weathersama!
     fileprivate var weatherModelList: [WeatherModel] = []
-
-    
-    
+    var cityToBeDetail: WeatherModel! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = getCurentDate()
-        
-//        tableView.delegate = self
-//        tableView.dataSource = self
 
         getWeatherMultiCities()
 
@@ -50,28 +45,18 @@ class CitiesTableViewController: UITableViewController {
         
         // #warning Incomplete implementation, return the number of rows
         return weatherModelList.count
-//        return listCities.count
+
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-//        tableView.register(CityWeatherCell.self, forCellReuseIdentifier: "CityCell")
-
         let cell  = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath) as! CityWeatherCell
-//        let cell  = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath)
-        
-//        cell.textLabel?.text = "\(Int(listCities[indexPath.row]))"
-        
-        
-        
-//        cell.cityNameLabel.text = "\(Int(listCities[indexPath.row]))"
 
         // Configure the cell...
         
         let cityWeatherItem : WeatherModel = weatherModelList[indexPath.row]
-        
-        
+           
         cell.cityName.text = cityWeatherItem.cityName
         cell.countryCode?.text = cityWeatherItem.sys.country
         cell.mainTemperature?.text = "\(Float(cityWeatherItem.main.temperature)) ºC"
@@ -79,6 +64,7 @@ class CitiesTableViewController: UITableViewController {
 //        cell.mainTempMin?.text = "\(Float(cityWeatherItem.main.temperatureMin))"
         cell.weatherDesription?.text = cityWeatherItem.weather[0].description
         
+// first metod for load image from web- not secure
 //        let imageURL = NSURL(string: ICON_URL + cityWeatherItem.weather[0].icon + ICON_FILE_EXT)
 //        let imagedData = NSData(contentsOf: imageURL! as URL)!
 //        cell.weatherIcon?.image = UIImage(data: imagedData as Data)
@@ -135,25 +121,24 @@ class CitiesTableViewController: UITableViewController {
 
     
     // MARK: - Navigation
-    /*
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        
+        if (segue.identifier == "ShowDetail") {
+            let indexPath =  self.tableView.indexPathForSelectedRow
+            let cityWeatherItem : WeatherModel = weatherModelList[indexPath!.row]
+            cityToBeDetail = cityWeatherItem
+                   let detailCityWeather = segue.destination as! DetailViewController
+                    
+                   detailCityWeather.selectedCity = cityToBeDetail
+        }
     }
-    */
-    
-    func getCurentDate () -> String {
-        let date = Calendar.current.date(byAdding: .day, value: 0, to: Date())
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM, dd, yyyy"
-        
-        return dateFormatter.string(from: date!)
-    }
+
     
     
-    
+    // Getting weather of milti cities based on constant list of cities
     func getWeatherMultiCities() {
         // Setup and request list of weather of cities
         weatherSama = Weathersama(appId: APP_ID, temperature: TEMPERATURE_TYPES.Celcius, language: LANGUAGES.English, dataResponse: DATA_RESPONSE.JSON)
@@ -161,10 +146,10 @@ class CitiesTableViewController: UITableViewController {
             weatherSama.weatherByCityId(cityId: index, requestType: .Weather) { (isSuccess, description, classModel) -> () in
                 if isSuccess {
                     // you can user response json or class model
-                    print("response json : \(description)")
+//                    print("response json : \(description)")
                     self.weatherModelList.append(classModel as! WeatherModel)
-                    print("Loop N : \(self.weatherModelList.count)")
-                    print("Row in view : \(self.tableView.numberOfRows(inSection: 0))")
+//                    print("Loop N : \(self.weatherModelList.count)")
+//                    print("Row in view : \(self.tableView.numberOfRows(inSection: 0))")
                     self.tableView.reloadData()
                     //                    print(self.weatherModelList.last?.cityName ?? String())
                     //                    print(self.weatherModelList.last?.main.temperature ?? Float())
