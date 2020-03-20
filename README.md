@@ -1,8 +1,8 @@
 # Weather3Days4ecast.iOS
 
-Test project of request curent and forecast Weather
+## Test project of request curent and forecast Weather
 
-The Tasks:
+**The Tasks:**
 Code an iOS Swift app that fetches weather forecast data from a remote API, for example: https://openweathermap.org/ (beware that you need to register and account activation may take up to 2 hours) and displays weather forecast for a set of cities.
  
 The app will be composed of 2 main screens:
@@ -23,18 +23,18 @@ Parameters that will be used to judge your application:
 - cleanness of the code and following best practices in terms of software architecture models
 - quality of the UI
 
-Time limit 3 days
+**Time limit:** 3 days
 
-Short describe:
+**Short describe:**
 1. Used frameworks:
 1.1. Weathersama pod - access to OpenWeathermap with data model and parsiing JSON
 1.2.1 Under Weathersama used Alamorfire pod for parsing of JSON response
 
-ToDo
+**ToDo**
 1. Add forecasr request
 2. Umprove design of interface
 3. Add search and edit function for Cities listing
 4. Add geolocation function
 
-License
+**License**
 Not licensed, absilutly free for use and fun
