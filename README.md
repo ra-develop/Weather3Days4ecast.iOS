@@ -29,7 +29,9 @@ Parameters that will be used to judge your application:
 **Short describe:**
 
 1. Used frameworks:
+
 1.1. Weathersama pod - access to OpenWeathermap with data model and parsiing JSON
+
 1.2.1 Under Weathersama used Alamorfire pod for parsing of JSON response
 
 **ToDo**
