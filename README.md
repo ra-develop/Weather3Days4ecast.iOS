@@ -30,7 +30,7 @@ Parameters that will be used to judge your application:
 
 Used frameworks and CocoaPods:
 
-1. Weathersama pod - access to OpenWeathermap with data model and parsiing JSON
+1. Weathersama pod - access to OpenWeathermap with simple data modeling and parsiing of JSON result from REST API request
 
 1.1. Under Weathersama used Alamorfire pod for parsing of JSON response
 
