@@ -95,7 +95,7 @@ func getDateByInterval(timeZone: TimeZone, interval: Int) -> String {
     return dateFormatter.string(from: date)
 }
 
-
+// Get string for prepare video file name based on main weather condition and hour of day
 func getWeatherCondition(weather: String, hour: Int) -> String {
     if weather.contains("Rain") {
         if hour >= 18 || hour <= 5 {

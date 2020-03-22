@@ -62,10 +62,6 @@ class DetailViewController: UIViewController {
         let timeZone = TimezoneMapper.latLngToTimezone(location)
         
         let fileName = getWeatherCondition(weather: selectedCity.weather[0].main, hour: Int(getHourByInterval(timeZone: timeZone! , timeInterval: selectedCity.dt))!)
-
-        print(fileName)
-        print(selectedCity.dt!)
-        print(Int(getHourByInterval(timeZone: timeZone! , timeInterval: selectedCity.dt))!)
         
         try? VideoBackground.shared.play(view: view, videoName: fileName, videoType: "mp4")
         
