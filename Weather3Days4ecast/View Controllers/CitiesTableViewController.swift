@@ -15,13 +15,23 @@ class CitiesTableViewController: UITableViewController {
     fileprivate var weatherSama: Weathersama!
     fileprivate var weatherModelList: [WeatherModel] = []
     var cityToBeDetail: WeatherModel! = nil
+    let backgroundImage = UIImageView(image: UIImage(named: "johannes-plenio-600dw3-1rv4-unsplash.jpg"))
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = getCurentDate()
-
         getWeatherMultiCities()
+        
+        self.title = getCurentDate()
+     
+        // Loading and framing background image
+        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.layer.frame = CGRect(x: -1202, y: 0, width: 1616, height: tableView.frame.height)
+        let backgroundImageView = UIView()
+        backgroundImageView.addSubview(backgroundImage)
+        tableView.backgroundView = backgroundImageView
+
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -30,9 +40,20 @@ class CitiesTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//
-//    }
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // Control of background image animation
+        let initialBackgroundImageFrame = backgroundImage.frame
+        UIView.animate(withDuration: 60.0, delay: 1.0, options: [.curveEaseOut, .curveEaseIn, .autoreverse, .repeat] , animations: {
+            var backgroundImageFrame = self.backgroundImage.frame
+            backgroundImageFrame.origin.x += self.backgroundImage.layer.frame.size.width - self.view.bounds.width
+            
+            self.backgroundImage.frame = backgroundImageFrame
+        }, completion: { finished in  self.backgroundImage.frame = initialBackgroundImageFrame  })
+                      
+        
+
+    }
 
     // MARK: - Table view data source
 
@@ -59,10 +80,8 @@ class CitiesTableViewController: UITableViewController {
            
         cell.cityName.text = cityWeatherItem.cityName
         cell.countryCode?.text = cityWeatherItem.sys.country
-        cell.mainTemperature?.text = "\(Float(cityWeatherItem.main.temperature)) ºC"
-//        cell.mainTempMax?.text = "\(Float(cityWeatherItem.main.temperatureMax))"
-//        cell.mainTempMin?.text = "\(Float(cityWeatherItem.main.temperatureMin))"
-        cell.weatherDesription?.text = cityWeatherItem.weather[0].description
+        cell.mainTemperature?.text = (cityWeatherItem.main.temperature != nil) ? "\(Float(cityWeatherItem.main.temperature)) ºC" : "---"
+        cell.weatherDesription?.text = cityWeatherItem.weather[0].main
         
 // first metod for load image from web- not secure
 //        let imageURL = NSURL(string: ICON_URL + cityWeatherItem.weather[0].icon + ICON_FILE_EXT)
@@ -148,14 +167,7 @@ class CitiesTableViewController: UITableViewController {
                     // you can user response json or class model
 //                    print("response json : \(description)")
                     self.weatherModelList.append(classModel as! WeatherModel)
-//                    print("Loop N : \(self.weatherModelList.count)")
-//                    print("Row in view : \(self.tableView.numberOfRows(inSection: 0))")
                     self.tableView.reloadData()
-                    //                    print(self.weatherModelList.last?.cityName ?? String())
-                    //                    print(self.weatherModelList.last?.main.temperature ?? Float())
-                    //                    print(self.weatherModelList.last?.weather[0].main ?? String())
-                    //                    print(self.weatherModelList.last?.weather[0].description ?? String())
-                    
                 } else {
                     print("response error : \(description)")
                 }

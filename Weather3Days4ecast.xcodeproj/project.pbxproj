@@ -12,6 +12,24 @@
 		1151C1D42423C37600A54E90 /* CityWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151C1D32423C37600A54E90 /* CityWeatherCell.swift */; };
 		1151C1D52423C37600A54E90 /* CityWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151C1D32423C37600A54E90 /* CityWeatherCell.swift */; };
 		1151C1D62423C37600A54E90 /* CityWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151C1D32423C37600A54E90 /* CityWeatherCell.swift */; };
+		116A3EA52426D57B00898E96 /* clear_day.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E992426BD0200898E96 /* clear_day.mp4 */; };
+		116A3EA62426D57B00898E96 /* clear_night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3EA12426BD0300898E96 /* clear_night.mp4 */; };
+		116A3EA72426D57B00898E96 /* cloudy_day.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E9D2426BD0300898E96 /* cloudy_day.mp4 */; };
+		116A3EA82426D57B00898E96 /* cloudy_night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3EA32426BD0400898E96 /* cloudy_night.mp4 */; };
+		116A3EA92426D57B00898E96 /* fog_day.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E922426BD0200898E96 /* fog_day.mp4 */; };
+		116A3EAA2426D57B00898E96 /* fog_night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E932426BD0200898E96 /* fog_night.mp4 */; };
+		116A3EAB2426D57B00898E96 /* hot.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E9B2426BD0300898E96 /* hot.mp4 */; };
+		116A3EAC2426D57B00898E96 /* partly_cloud_day.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E972426BD0200898E96 /* partly_cloud_day.mp4 */; };
+		116A3EAD2426D57B00898E96 /* partly_cloud_night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E942426BD0200898E96 /* partly_cloud_night.mp4 */; };
+		116A3EAE2426D57B00898E96 /* partly_sunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E952426BD0200898E96 /* partly_sunny.mp4 */; };
+		116A3EAF2426D57B00898E96 /* rain_day.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3EA02426BD0300898E96 /* rain_day.mp4 */; };
+		116A3EB02426D57B00898E96 /* rain_night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E9E2426BD0300898E96 /* rain_night.mp4 */; };
+		116A3EB12426D57B00898E96 /* snow_day.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E982426BD0200898E96 /* snow_day.mp4 */; };
+		116A3EB22426D57B00898E96 /* snow_night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E962426BD0200898E96 /* snow_night.mp4 */; };
+		116A3EB32426D57B00898E96 /* thunderstorm_day.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3EA22426BD0400898E96 /* thunderstorm_day.mp4 */; };
+		116A3EB42426D57B00898E96 /* thunderstorm_night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E9C2426BD0300898E96 /* thunderstorm_night.mp4 */; };
+		116A3EB52426D57B00898E96 /* windy_day.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E9F2426BD0300898E96 /* windy_day.mp4 */; };
+		116A3EB62426D57B00898E96 /* windy_night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E9A2426BD0300898E96 /* windy_night.mp4 */; };
 		117D44742420E40300A49F65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D44732420E40300A49F65 /* AppDelegate.swift */; };
 		117D44762420E40300A49F65 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D44752420E40300A49F65 /* SceneDelegate.swift */; };
 		117D44782420E40300A49F65 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D44772420E40300A49F65 /* DetailViewController.swift */; };
@@ -59,6 +77,24 @@
 		01B53995804F46F8B34C3F98 /* Pods_Weather3Days4ecast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather3Days4ecast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		114A21B42424BC5300130233 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		1151C1D32423C37600A54E90 /* CityWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherCell.swift; sourceTree = "<group>"; };
+		116A3E922426BD0200898E96 /* fog_day.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = fog_day.mp4; sourceTree = "<group>"; };
+		116A3E932426BD0200898E96 /* fog_night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = fog_night.mp4; sourceTree = "<group>"; };
+		116A3E942426BD0200898E96 /* partly_cloud_night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = partly_cloud_night.mp4; sourceTree = "<group>"; };
+		116A3E952426BD0200898E96 /* partly_sunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = partly_sunny.mp4; sourceTree = "<group>"; };
+		116A3E962426BD0200898E96 /* snow_night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = snow_night.mp4; sourceTree = "<group>"; };
+		116A3E972426BD0200898E96 /* partly_cloud_day.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = partly_cloud_day.mp4; sourceTree = "<group>"; };
+		116A3E982426BD0200898E96 /* snow_day.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = snow_day.mp4; sourceTree = "<group>"; };
+		116A3E992426BD0200898E96 /* clear_day.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = clear_day.mp4; sourceTree = "<group>"; };
+		116A3E9A2426BD0300898E96 /* windy_night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = windy_night.mp4; sourceTree = "<group>"; };
+		116A3E9B2426BD0300898E96 /* hot.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = hot.mp4; sourceTree = "<group>"; };
+		116A3E9C2426BD0300898E96 /* thunderstorm_night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = thunderstorm_night.mp4; sourceTree = "<group>"; };
+		116A3E9D2426BD0300898E96 /* cloudy_day.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloudy_day.mp4; sourceTree = "<group>"; };
+		116A3E9E2426BD0300898E96 /* rain_night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = rain_night.mp4; sourceTree = "<group>"; };
+		116A3E9F2426BD0300898E96 /* windy_day.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = windy_day.mp4; sourceTree = "<group>"; };
+		116A3EA02426BD0300898E96 /* rain_day.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = rain_day.mp4; sourceTree = "<group>"; };
+		116A3EA12426BD0300898E96 /* clear_night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = clear_night.mp4; sourceTree = "<group>"; };
+		116A3EA22426BD0400898E96 /* thunderstorm_day.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = thunderstorm_day.mp4; sourceTree = "<group>"; };
+		116A3EA32426BD0400898E96 /* cloudy_night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloudy_night.mp4; sourceTree = "<group>"; };
 		117D44702420E40300A49F65 /* Weather3Days4ecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather3Days4ecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		117D44732420E40300A49F65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		117D44752420E40300A49F65 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +170,31 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		116A3E912426BCBA00898E96 /* VideoBackground */ = {
+			isa = PBXGroup;
+			children = (
+				116A3E992426BD0200898E96 /* clear_day.mp4 */,
+				116A3EA12426BD0300898E96 /* clear_night.mp4 */,
+				116A3E9D2426BD0300898E96 /* cloudy_day.mp4 */,
+				116A3EA32426BD0400898E96 /* cloudy_night.mp4 */,
+				116A3E922426BD0200898E96 /* fog_day.mp4 */,
+				116A3E932426BD0200898E96 /* fog_night.mp4 */,
+				116A3E9B2426BD0300898E96 /* hot.mp4 */,
+				116A3E972426BD0200898E96 /* partly_cloud_day.mp4 */,
+				116A3E942426BD0200898E96 /* partly_cloud_night.mp4 */,
+				116A3E952426BD0200898E96 /* partly_sunny.mp4 */,
+				116A3EA02426BD0300898E96 /* rain_day.mp4 */,
+				116A3E9E2426BD0300898E96 /* rain_night.mp4 */,
+				116A3E982426BD0200898E96 /* snow_day.mp4 */,
+				116A3E962426BD0200898E96 /* snow_night.mp4 */,
+				116A3EA22426BD0400898E96 /* thunderstorm_day.mp4 */,
+				116A3E9C2426BD0300898E96 /* thunderstorm_night.mp4 */,
+				116A3E9F2426BD0300898E96 /* windy_day.mp4 */,
+				116A3E9A2426BD0300898E96 /* windy_night.mp4 */,
+			);
+			path = VideoBackground;
+			sourceTree = "<group>";
+		};
 		117D44672420E40300A49F65 = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +253,7 @@
 		11ECC8A824220B660023DE88 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				116A3E912426BCBA00898E96 /* VideoBackground */,
 				11ECC8AF2422115B0023DE88 /* Default-568h@2x.png */,
 				117D447C2420E40500A49F65 /* Assets.xcassets */,
 			);
@@ -373,6 +435,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				116A3EA52426D57B00898E96 /* clear_day.mp4 in Resources */,
+				116A3EA62426D57B00898E96 /* clear_night.mp4 in Resources */,
+				116A3EA72426D57B00898E96 /* cloudy_day.mp4 in Resources */,
+				116A3EA82426D57B00898E96 /* cloudy_night.mp4 in Resources */,
+				116A3EA92426D57B00898E96 /* fog_day.mp4 in Resources */,
+				116A3EAA2426D57B00898E96 /* fog_night.mp4 in Resources */,
+				116A3EAB2426D57B00898E96 /* hot.mp4 in Resources */,
+				116A3EAC2426D57B00898E96 /* partly_cloud_day.mp4 in Resources */,
+				116A3EAD2426D57B00898E96 /* partly_cloud_night.mp4 in Resources */,
+				116A3EAE2426D57B00898E96 /* partly_sunny.mp4 in Resources */,
+				116A3EAF2426D57B00898E96 /* rain_day.mp4 in Resources */,
+				116A3EB02426D57B00898E96 /* rain_night.mp4 in Resources */,
+				116A3EB12426D57B00898E96 /* snow_day.mp4 in Resources */,
+				116A3EB22426D57B00898E96 /* snow_night.mp4 in Resources */,
+				116A3EB32426D57B00898E96 /* thunderstorm_day.mp4 in Resources */,
+				116A3EB42426D57B00898E96 /* thunderstorm_night.mp4 in Resources */,
+				116A3EB52426D57B00898E96 /* windy_day.mp4 in Resources */,
+				116A3EB62426D57B00898E96 /* windy_night.mp4 in Resources */,
 				117D44802420E40500A49F65 /* LaunchScreen.storyboard in Resources */,
 				11ECC8B0242211DF0023DE88 /* Default-568h@2x.png in Resources */,
 				117D447D2420E40500A49F65 /* Assets.xcassets in Resources */,

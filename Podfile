@@ -5,6 +5,8 @@ target 'Weather3Days4ecast' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'Weathersama', '~> 1.1.3'
+  pod 'LatLongToTimezone'
+  pod 'SwiftVideoBackground'
 
   # Pods for Weather3Days4ecast
 

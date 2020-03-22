@@ -51,29 +51,5 @@ class Weather {
     var dateTimeText : String = ""
     var localDateTime : Int!
     
-  
-    
-//    func getTime(timeZone: TimeZone, interval: Int) -> String {
-//        let date = Date(timeIntervalSince1970: TimeInterval(interval))
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.timeZone = timeZone
-//        dateFormatter.locale = NSLocale.current
-//        dateFormatter.dateFormat = "HH:mm:ss"
-//        return dateFormatter.string(from: date)
-//    }
-//    
-//    func setWindDirection(degree : Float) -> String {
-//        let directions = ["Nord", "Nord-East", "East", "South-East", "South", "South-West", "West", "Nord-West"]
-//        let i: Int = Int((degree + 33.75)/45)
-//        return directions[i % 8]
-//    }
-//    
-//    func getDate(timeZone: TimeZone, interval: Int) -> String {
-//        let date = Date(timeIntervalSince1970: TimeInterval(interval))
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.timeZone = timeZone
-//        dateFormatter.locale = NSLocale.current
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
-//        return dateFormatter.string(from: date)
-//    }
+
 }

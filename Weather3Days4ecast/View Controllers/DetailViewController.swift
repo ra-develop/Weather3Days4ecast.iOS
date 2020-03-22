@@ -8,6 +8,9 @@
 
 import UIKit
 import Weathersama
+import LatLongToTimezone
+import CoreLocation
+import SwiftVideoBackground
 
 
 class DetailViewController: UIViewController {
@@ -55,17 +58,20 @@ class DetailViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         
-        selectedCityLabel.text = selectedCity.cityName
-
+        let location = CLLocationCoordinate2D(latitude: selectedCity.coordinate.latitude, longitude: selectedCity.coordinate.longitude)
+        let timeZone = TimezoneMapper.latLngToTimezone(location)
         
-        let initialBackGroundImagePosition = self.backGroundImage.frame.origin.x
+        let fileName = getWeatherCondition(weather: selectedCity.weather[0].main, hour: Int(getHourByInterval(timeZone: timeZone! , timeInterval: selectedCity.dt))!)
 
-        // Control of background image animation of main screen
-        UIView.animate(withDuration: 60.0, delay: 1.0, options: [.curveEaseOut, .curveEaseIn, .autoreverse] , animations: {
-            var backGroundImageFrame = self.backGroundImage.frame
-            backGroundImageFrame.origin.x += backGroundImageFrame.size.width - self.view.bounds.width
-            self.backGroundImage.frame = backGroundImageFrame
-            }, completion: { finished in self.backGroundImage.frame.origin.x = initialBackGroundImagePosition })
+        print(fileName)
+        print(selectedCity.dt!)
+        print(Int(getHourByInterval(timeZone: timeZone! , timeInterval: selectedCity.dt))!)
+        
+        try? VideoBackground.shared.play(view: view, videoName: fileName, videoType: "mp4")
+        
+        self.backGroundImage.removeFromSuperview()
+        
+        selectedCityLabel.text = selectedCity.cityName
         
         getImageFromWeb(ICON_URL + selectedCity.weather[0].icon + ICON_FILE_EXT) { (image) in
             if let image = image {
@@ -73,31 +79,32 @@ class DetailViewController: UIViewController {
             } // if you use an Else statement, it will be in background
         }
       
-        mainTempLabel.text = "\(Float(selectedCity.main.temperature)) ºC"
+        mainTempLabel.text = (selectedCity.main.temperature != nil) ? "\(Float(selectedCity.main.temperature)) ºC" : "---"
 
-        mainFeelsTempLabel.text = "\(Float(selectedCity.main.temperature)) ºC"
+        mainFeelsTempLabel.text = (selectedCity.main.temperature != nil) ? "\(Float(selectedCity.main.temperature)) ºC" : "---"
 
-        mainTempMax.text = "\(Float(selectedCity.main.temperatureMax)) ºC"
+        mainTempMax.text = (selectedCity.main.temperatureMax != nil) ? "\(Float(selectedCity.main.temperatureMax)) ºC" : "---"
 
-        mainTempMin.text = "\(Float(selectedCity.main.temperatureMin)) ºC"
+        mainTempMin.text = (selectedCity.main.temperatureMin != nil) ? "\(Float(selectedCity.main.temperatureMin)) ºC" : "---"
 
         weatherMainLabel.text = selectedCity.weather[0].main
 
         weatherDesriptionLabel.text = selectedCity.weather[0].description
 
-        mainPressureLabel.text = "\(Int(selectedCity.main.pressure)) kPa"
+        mainPressureLabel.text = (selectedCity.main.pressure != nil) ? "\(Int(selectedCity.main.pressure)) kPa" : "---"
 
-        mainHumidityLabel.text = "\(Int(selectedCity.main.humidity)) %"
+        mainHumidityLabel.text = (selectedCity.main.humidity != nil) ? "\(Int(selectedCity.main.humidity)) %" : "---"
+        
+        // TODO use this option when a parsed forecst
+        // visibilityLabel.text = "\(Int(selectedCity.visibility)) m"
 
-//        visibilityLabel.text = "\(Int(selectedCity.visibility)) m"
+        windSpeedLabel.text = (selectedCity.wind.speed != nil) ? "\(Float(selectedCity.wind.speed)) m/c" : "---"
+        
+        windDegLabel.text = (selectedCity.wind.deg != nil) ? "\(setWindDirection(degree: Float(selectedCity.wind.deg))) \( (Int(selectedCity.wind.deg)))º" : "---"
+       
+        sunriseLabel.text = getTimeByInterval(timeZone: timeZone! , interval: selectedCity.sys.sunrise)
 
-        windSpeedLabel.text = "\(Float(selectedCity.wind.speed)) m/c"
-
-        windDegLabel.text = "\(Int(selectedCity.wind.speed)) Deg"
-
-        sunriseLabel.text = getTimeByInterval(timeZone: TimeZone.init(secondsFromGMT: selectedCityTimezone)! , interval: selectedCity.sys.sunrise)
-
-        sunsetLabel.text = getTimeByInterval(timeZone: TimeZone.init(secondsFromGMT: selectedCityTimezone)!, interval: selectedCity.sys.sunset)
+        sunsetLabel.text = getTimeByInterval(timeZone: timeZone!, interval: selectedCity.sys.sunset)
         
         
     }
