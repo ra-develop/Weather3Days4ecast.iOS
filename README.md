@@ -28,11 +28,16 @@ Parameters that will be used to judge your application:
 
 **Short describe:**
 
-1. Used frameworks:
+Used frameworks and CocoaPods:
 
-1.1. Weathersama pod - access to OpenWeathermap with data model and parsiing JSON
+1. Weathersama pod - access to OpenWeathermap with data model and parsiing JSON
 
-1.2.1 Under Weathersama used Alamorfire pod for parsing of JSON response
+1.1 Under Weathersama used Alamorfire pod for parsing of JSON response
+
+2. SwiftVideoBackground - create live background based on short video files
+
+3. LatLongToTimezone - determitation of TimeZone based on coordinates
+
 
 **ToDo**
 
