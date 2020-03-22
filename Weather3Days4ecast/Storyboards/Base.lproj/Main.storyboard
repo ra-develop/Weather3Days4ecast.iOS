@@ -301,7 +301,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="eR4-Al-5aA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ForecastCell" id="eR4-Al-5aA" customClass="ForecastTableViewCell" customModule="Weather3Days4ecast" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eR4-Al-5aA" id="B7B-0U-bV9">
@@ -337,6 +337,7 @@
                         <outlet property="selectedCityLabel" destination="dHD-7d-o5T" id="guF-Jy-ZV7"/>
                         <outlet property="sunriseLabel" destination="H3S-x3-NEu" id="20M-Nh-f5n"/>
                         <outlet property="sunsetLabel" destination="Noj-gG-75x" id="C6P-XZ-Xl9"/>
+                        <outlet property="tableView" destination="ikC-pI-s4d" id="0T9-Bq-TmL"/>
                         <outlet property="visibilityLabel" destination="w49-g2-dxh" id="ib1-fZ-abg"/>
                         <outlet property="weatherDesriptionLabel" destination="De1-82-jA8" id="Iyu-66-s2x"/>
                         <outlet property="weatherIcon" destination="9Rp-ZR-5ab" id="Z4e-CX-CIE"/>

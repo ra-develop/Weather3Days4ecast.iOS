@@ -30,9 +30,9 @@
 		116A3EB42426D57B00898E96 /* thunderstorm_night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E9C2426BD0300898E96 /* thunderstorm_night.mp4 */; };
 		116A3EB52426D57B00898E96 /* windy_day.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E9F2426BD0300898E96 /* windy_day.mp4 */; };
 		116A3EB62426D57B00898E96 /* windy_night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 116A3E9A2426BD0300898E96 /* windy_night.mp4 */; };
-		116A3EBE2426FA4B00898E96 /* ForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116A3EBD2426FA4B00898E96 /* ForecastTableViewController.swift */; };
-		116A3EBF2426FA4B00898E96 /* ForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116A3EBD2426FA4B00898E96 /* ForecastTableViewController.swift */; };
-		116A3EC02426FA4B00898E96 /* ForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116A3EBD2426FA4B00898E96 /* ForecastTableViewController.swift */; };
+		116A3EC724277F3200898E96 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116A3EC624277F3200898E96 /* ForecastTableViewCell.swift */; };
+		116A3EC824277F3200898E96 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116A3EC624277F3200898E96 /* ForecastTableViewCell.swift */; };
+		116A3EC924277F3200898E96 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116A3EC624277F3200898E96 /* ForecastTableViewCell.swift */; };
 		117D44742420E40300A49F65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D44732420E40300A49F65 /* AppDelegate.swift */; };
 		117D44762420E40300A49F65 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D44752420E40300A49F65 /* SceneDelegate.swift */; };
 		117D44782420E40300A49F65 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D44772420E40300A49F65 /* DetailViewController.swift */; };
@@ -98,7 +98,7 @@
 		116A3EA12426BD0300898E96 /* clear_night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = clear_night.mp4; sourceTree = "<group>"; };
 		116A3EA22426BD0400898E96 /* thunderstorm_day.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = thunderstorm_day.mp4; sourceTree = "<group>"; };
 		116A3EA32426BD0400898E96 /* cloudy_night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloudy_night.mp4; sourceTree = "<group>"; };
-		116A3EBD2426FA4B00898E96 /* ForecastTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewController.swift; sourceTree = "<group>"; };
+		116A3EC624277F3200898E96 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		117D44702420E40300A49F65 /* Weather3Days4ecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather3Days4ecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		117D44732420E40300A49F65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		117D44752420E40300A49F65 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				1151C1D32423C37600A54E90 /* CityWeatherCell.swift */,
+				116A3EC624277F3200898E96 /* ForecastTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -279,7 +280,6 @@
 				115A05532423BCCD00D7707C /* Cells */,
 				117D44772420E40300A49F65 /* DetailViewController.swift */,
 				11ECC8B224226CEA0023DE88 /* CitiesTableViewController.swift */,
-				116A3EBD2426FA4B00898E96 /* ForecastTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -593,9 +593,9 @@
 				1151C1D42423C37600A54E90 /* CityWeatherCell.swift in Sources */,
 				117D44782420E40300A49F65 /* DetailViewController.swift in Sources */,
 				117D44742420E40300A49F65 /* AppDelegate.swift in Sources */,
-				116A3EBE2426FA4B00898E96 /* ForecastTableViewController.swift in Sources */,
 				11ECC8B324226CEA0023DE88 /* CitiesTableViewController.swift in Sources */,
 				114A21B52424BC5300130233 /* Service.swift in Sources */,
+				116A3EC724277F3200898E96 /* ForecastTableViewCell.swift in Sources */,
 				11ECC8C32422DE8C0023DE88 /* Weather.swift in Sources */,
 				117D44762420E40300A49F65 /* SceneDelegate.swift in Sources */,
 				11ECC8C72422DEBD0023DE88 /* City.swift in Sources */,
@@ -606,13 +606,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				116A3EC824277F3200898E96 /* ForecastTableViewCell.swift in Sources */,
 				11ECC8C42422DE8C0023DE88 /* Weather.swift in Sources */,
 				114A21B62424BC5300130233 /* Service.swift in Sources */,
 				11ECC8C82422DEBD0023DE88 /* City.swift in Sources */,
 				11ECC8B424226CEA0023DE88 /* CitiesTableViewController.swift in Sources */,
 				1151C1D52423C37600A54E90 /* CityWeatherCell.swift in Sources */,
 				117D448B2420E40600A49F65 /* Weather3Days4ecastTests.swift in Sources */,
-				116A3EBF2426FA4B00898E96 /* ForecastTableViewController.swift in Sources */,
 				11ECC8C02422DABA0023DE88 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,10 +622,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				11ECC8C52422DE8C0023DE88 /* Weather.swift in Sources */,
-				116A3EC02426FA4B00898E96 /* ForecastTableViewController.swift in Sources */,
 				11ECC8C92422DEBD0023DE88 /* City.swift in Sources */,
 				11ECC8B524226CEA0023DE88 /* CitiesTableViewController.swift in Sources */,
 				1151C1D62423C37600A54E90 /* CityWeatherCell.swift in Sources */,
+				116A3EC924277F3200898E96 /* ForecastTableViewCell.swift in Sources */,
 				117D44962420E40600A49F65 /* Weather3Days4ecastUITests.swift in Sources */,
 				11ECC8C12422DABA0023DE88 /* Constants.swift in Sources */,
 			);
