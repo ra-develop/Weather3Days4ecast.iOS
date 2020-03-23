@@ -155,6 +155,10 @@ class CitiesTableViewController: UITableViewController {
         }
     }
 
+    // Getting user location of geo position.
+    func addMyLocationCity() {
+        
+    }
     
     
     // Getting weather of milti cities based on constant list of cities

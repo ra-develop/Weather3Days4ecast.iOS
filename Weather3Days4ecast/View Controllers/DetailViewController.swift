@@ -27,7 +27,7 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
     // Section properties detail view of selected city
     @IBOutlet var backGroundImage: UIImageView!
     
-    @IBOutlet var selectedLocaDate: UILabel!
+    @IBOutlet var selectedLocalDate: UILabel!
     
     @IBOutlet var selectedLocalTime: UILabel!
     
@@ -87,7 +87,7 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
         try? VideoBackground.shared.play(view: view, videoName: fileName, videoType: "mp4")
         self.backGroundImage.removeFromSuperview()
         
-        selectedLocaDate.text = getDateByIntervalDetail(timeZone: selectedCityTimeZone!, interval: selectedCity.dt)
+        selectedLocalDate.text = getDateByIntervalDetail(timeZone: selectedCityTimeZone!, interval: selectedCity.dt)
         
         selectedLocalTime.text = getTimeByInterval(timeZone: selectedCityTimeZone!, interval: selectedCity.dt)
         

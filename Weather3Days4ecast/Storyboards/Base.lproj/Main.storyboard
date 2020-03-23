@@ -416,7 +416,7 @@
                         <outlet property="mainTempMax" destination="ILN-ud-mAF" id="tTa-ta-cfd"/>
                         <outlet property="mainTempMin" destination="lsq-ow-5FR" id="Bge-BI-U2L"/>
                         <outlet property="selectedCityLabel" destination="dHD-7d-o5T" id="guF-Jy-ZV7"/>
-                        <outlet property="selectedLocaDate" destination="TWQ-EY-oCL" id="Oyv-Bt-CDr"/>
+                        <outlet property="selectedLocalDate" destination="TWQ-EY-oCL" id="Oyv-Bt-CDr"/>
                         <outlet property="selectedLocalTime" destination="lZB-uv-mFi" id="fR6-Hj-Zz9"/>
                         <outlet property="sunriseLabel" destination="H3S-x3-NEu" id="20M-Nh-f5n"/>
                         <outlet property="sunsetLabel" destination="Noj-gG-75x" id="C6P-XZ-Xl9"/>
