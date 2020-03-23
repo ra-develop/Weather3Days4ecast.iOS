@@ -10,13 +10,22 @@ import Foundation
 import UIKit
 
 // Geting of current date
-func getCurentDate () -> String {
+func getCurentDateWithWeekDay () -> String {
     let date = Calendar.current.date(byAdding: .day, value: 0, to: Date())
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MMMM, dd, yyyy"
+    dateFormatter.dateFormat = "EEEE, MMMM d, yyyy"
     
     return dateFormatter.string(from: date!)
 }
+
+func getCurentDateStandart () -> String {
+    let date = Calendar.current.date(byAdding: .day, value: 0, to: Date())
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    
+    return dateFormatter.string(from: date!)
+}
+
 
 
 //Gering Image file from Web
@@ -91,7 +100,25 @@ func getDateByInterval(timeZone: TimeZone, interval: Int) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.timeZone = timeZone
     dateFormatter.locale = NSLocale.current
-    dateFormatter.dateFormat = "yyyy-MM-dd"
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    return dateFormatter.string(from: date)
+}
+
+func getDateByIntervalDetail(timeZone: TimeZone, interval: Int) -> String {
+    let date = Date(timeIntervalSince1970: TimeInterval(interval))
+    let dateFormatter = DateFormatter()
+    dateFormatter.timeZone = timeZone
+    dateFormatter.locale = NSLocale.current
+    dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+    return dateFormatter.string(from: date)
+}
+
+func getWeekDayInterval(timeZone: TimeZone, interval: Int) -> String {
+    let date = Date(timeIntervalSince1970: TimeInterval(interval))
+    let dateFormatter = DateFormatter()
+    dateFormatter.timeZone = timeZone
+    dateFormatter.locale = NSLocale.current
+    dateFormatter.dateFormat = "EEEE"
     return dateFormatter.string(from: date)
 }
 

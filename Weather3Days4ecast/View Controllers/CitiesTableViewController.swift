@@ -23,7 +23,7 @@ class CitiesTableViewController: UITableViewController {
         
         getWeatherMultiCities()
         
-        self.title = getCurentDate()
+        self.title = getCurentDateWithWeekDay()
      
         // Loading and framing background image
         backgroundImage.contentMode = .scaleAspectFill
