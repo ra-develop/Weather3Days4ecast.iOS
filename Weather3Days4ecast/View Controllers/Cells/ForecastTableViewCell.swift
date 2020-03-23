@@ -11,6 +11,19 @@ import UIKit
 class ForecastTableViewCell: UITableViewCell {
 
     
+    @IBOutlet var forecastTimeLabel: UILabel!
+    
+    @IBOutlet var forecastIconImage: UIImageView!
+    
+    @IBOutlet var forecastWeatherMainLabel: UILabel!
+    
+    @IBOutlet var forecastHumidityLabel: UILabel!
+    
+    @IBOutlet var forecastMainTempMax: UILabel!
+    
+    @IBOutlet var forecastMainTempMin: UILabel!
+    
+
     
 //    override func awakeFromNib() {
 //        super.awakeFromNib()

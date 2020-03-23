@@ -14,11 +14,6 @@ import SwiftVideoBackground
 
 
 class DetailViewController: UIViewController ,  UITableViewDataSource, UITableViewDelegate  {
-
-    
-    
-    @IBOutlet var tableView: UITableView!
-    
     
     fileprivate var weatherSama: Weathersama!
     fileprivate var forecastModel: ForecastModel!
@@ -26,6 +21,10 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
     var selectedCityTimeZone : TimeZone!
     var forecastSection = [(String, String)] ()
     
+    // table view for Forecast viewing
+    @IBOutlet var tableView: UITableView!
+
+    // Section properties detail view of selected city
     @IBOutlet var backGroundImage: UIImageView!
     
     @IBOutlet var selectedLocaDate: UILabel!
@@ -61,6 +60,8 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
     @IBOutlet var sunriseLabel: UILabel!
     
     @IBOutlet var sunsetLabel: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,7 +115,7 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
 
         mainHumidityLabel.text = (selectedCity.main.humidity != nil) ? "\(Int(selectedCity.main.humidity)) %" : "---"
         
-        // TODO use this option when a parsed forecst
+        // TODO use this option when a parsed forecast
         // visibilityLabel.text = "\(Int(selectedCity.visibility)) m"
 
         windSpeedLabel.text = (selectedCity.wind.speed != nil) ? "\(Float(selectedCity.wind.speed)) m/c" : "---"
@@ -140,20 +141,31 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
         var countNightTemp = 0
         let dayTemp : String!
         let nightTemp : String!
+        var weekDay = ""
         
+        let selectedCityToday = getDateByInterval(timeZone: self.selectedCityTimeZone, interval: self.selectedCity.dt).prefix(10)
+
         for listItem in self.forecastModel.list {
             if listItem.dtTxt.hasPrefix(section.0) {
                 let hour : Int = Int(getHourByInterval(timeZone: self.selectedCityTimeZone, timeInterval: listItem.dt))!
                 if hour >= 18 || hour <= 6 {
-                    countNightTemp = countNightTemp + 1
+                    countNightTemp += 1
                     averageTempNight += listItem.main.temperature
                 } else {
-                    countDayTemp = countDayTemp + 1
+                    countDayTemp += 1
                     averageTempDay += listItem.main.temperature
                 }
+                if section.0.hasPrefix(selectedCityToday) {
+                    weekDay = "Today"
+                } else {
+                    weekDay = "\(getWeekDayInterval(timeZone: self.selectedCityTimeZone, interval: listItem.dt))"
+                }
             }
+
         }
-    
+        
+
+
         // Round results to decimals 2 sign if count of values != 0
         if countDayTemp != 0 {
             averageTempDay /=  Double(countDayTemp)
@@ -165,8 +177,9 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
             averageTempNight = Double(averageTempNight*100).rounded() / 100
             nightTemp = ", Nihgt: \(Float(averageTempNight))ºС"
         } else { nightTemp = "" }
+        
             
-        return section.1  + dayTemp + nightTemp
+        return weekDay  + dayTemp + nightTemp
     }
 
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
@@ -180,19 +193,56 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-//        let sectionItem = self.forecastSection[section]
-//        forecastModel.list.
-        return 5
+        
+        let section = self.forecastSection[section]
+        var countRowsInSection = 0
+        for listItem in self.forecastModel.list {
+            if listItem.dtTxt.hasPrefix(section.0) {
+                countRowsInSection += 1
+            }
+        }
+        return countRowsInSection
     }
     
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastCell", for: indexPath) as! ForecastTableViewCell
         
-        cell.textLabel?.text = forecastSection[indexPath.row].1 + " \(indexPath.row)"
+        // Determine section
+        let section = self.forecastSection[indexPath.section]
+        
+        // Determine forecast time
+        let forecastTime = section.1.split(separator: " ")
+        
+        // Prepare and search by data and time in ForecastModel data source
+        let dtSearch = section.0 + " " + forecastTime[indexPath.row]
+        
+        // fix a forecast item data source
+        let forecastItem: ForecastListModel = forecastModel.list.first { (item : ForecastListModel) -> Bool in
+            if item.dtTxt == dtSearch {
+                return true
+            }
+            return false
+            }!
+        
         // Configure the cell...
+        cell.forecastTimeLabel.text = String(forecastTime[indexPath.row].prefix(5))
+        
+        cell.forecastWeatherMainLabel.text = forecastItem.weather[0].main
+        
+        cell.forecastHumidityLabel.text = (forecastItem.main.humidity != nil) ? "\(Float(forecastItem.main.humidity)) %" : "---"
+        
+        cell.forecastMainTempMax.text = (forecastItem.main.temperatureMax != nil) ? "\(Float(forecastItem.main.temperatureMax)) ºC" : "---"
+        
+        cell.forecastMainTempMin.text = (forecastItem.main.temperatureMin != nil) ? "\(Float(forecastItem.main.temperatureMin)) ºC" : "---"
+                
+        getImageFromWeb(ICON_URL + forecastItem.weather[0].icon + ICON_FILE_EXT) { (image) in
+            if let image = image {
+                cell.forecastIconImage.image = image
+            } // if you use an Else statement, it will be in background
+        }
+        
 
         return cell
     }
@@ -250,25 +300,28 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
         weatherSama = Weathersama(appId: APP_ID, temperature: TEMPERATURE_TYPES.Celcius, language: LANGUAGES.English, dataResponse: DATA_RESPONSE.JSON)
         weatherSama.weatherByCityId(cityId: selectedCity.cityId, requestType: .Forecast) { (isSuccess, description, classModel) -> () in
             if isSuccess {
-                print("response json : \(description)")
+                
+                // Load parsed model form JSON
                 self.forecastModel = classModel as? ForecastModel
+
+                // Variable for preparing section of tableview
+                // main data source for section view
                 var tempDictionary = [String: String] ()
-                let selectedCityToday = getDateByInterval(timeZone: self.selectedCityTimeZone, interval: self.selectedCity.dt).prefix(10)
-                print(selectedCityToday)
+                
+                // Determinate loacal date for selected city
                 
                 // Prepare section data source based on date and weekday
                 for listItem in self.forecastModel.list {
-                    
-                    if listItem.dtTxt.hasPrefix(selectedCityToday) {
-                        tempDictionary [String(listItem.dtTxt.prefix(10))] = "Today"
-                    } else {
-                        tempDictionary [String(listItem.dtTxt.prefix(10))] = "\(getWeekDayInterval(timeZone: self.selectedCityTimeZone, interval: listItem.dt))"
-                    }
+                    // Composition for header of section view
+                    let tempString = tempDictionary [String(listItem.dtTxt.prefix(10))]
+                    tempDictionary [String(listItem.dtTxt.prefix(10))] = (tempString != nil ? tempString! : "") +
+                    " \(String(listItem.dtTxt.suffix(8)))"
                 }
-                // Sorting result
+                
+                // Sorting result for section data source
                 self.forecastSection =  tempDictionary.sorted(by: <)
                 
-                
+                // reload tableView
                 self.tableView?.reloadData()
             } else {
                 print("response error : \(description)")
