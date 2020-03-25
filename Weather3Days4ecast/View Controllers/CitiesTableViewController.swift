@@ -8,18 +8,24 @@
 
 import UIKit
 import Weathersama
+import CoreLocation
 
 
-class CitiesTableViewController: UITableViewController {
+class CitiesTableViewController: UITableViewController, CLLocationManagerDelegate {
     
     fileprivate var weatherSama: Weathersama!
     fileprivate var weatherModelList: [WeatherModel] = []
     var cityToBeDetail: WeatherModel! = nil
     let backgroundImage = UIImageView(image: UIImage(named: "johannes-plenio-600dw3-1rv4-unsplash.jpg"))
-    
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocationCoordinate2D!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
         
         getWeatherMultiCities()
         
@@ -51,7 +57,7 @@ class CitiesTableViewController: UITableViewController {
             self.backgroundImage.frame = backgroundImageFrame
         }, completion: { finished in  self.backgroundImage.frame = initialBackgroundImageFrame  })
                       
-        
+        locationManager.requestLocation()
 
     }
 
@@ -99,8 +105,8 @@ class CitiesTableViewController: UITableViewController {
     }
     
     @IBAction func Reload(_ sender: Any) {
+        locationManager.requestLocation()
         self.tableView.reloadData()
-        print("Elements in listing : \(self.weatherModelList.count)")
     }
     
     /*
@@ -156,8 +162,46 @@ class CitiesTableViewController: UITableViewController {
     }
 
     // Getting user location of geo position.
-    func addMyLocationCity() {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
+        if (locations.last != nil) {
+            currentLocation = locations.last?.coordinate
+            weatherSama.weatherByCoordinate(coordinate: currentLocation, requestType: .Weather) { (isSuccess, description, classModel) -> () in
+                if isSuccess {
+                    // you can user response json or class model
+                    //                    print("response json : \(description)")
+                    
+                    if !self.weatherModelList.isEmpty {
+                        if self.weatherModelList[0].cityName.prefix(1) != "⦿" {
+                            self.weatherModelList.insert(classModel as! WeatherModel, at: 0)
+                        } else {
+                            self.weatherModelList[0] = classModel as! WeatherModel
+                            
+                        }
+                    } else {
+                        self.weatherModelList.append(classModel as! WeatherModel)
+                    }
+                    self.weatherModelList[0].cityName = "⦿" + self.weatherModelList[0].cityName
+//                    self.weatherModelList[0].coordinate.latitude = self.currentLocation.latitude
+//                    self.weatherModelList[0].coordinate.longitude = self.currentLocation.longitude
+                   
+                    self.tableView.reloadData()
+                } else {
+                    print("response error : \(description)")
+                }
+            }
+            
+            print("Found user's location: \(String(describing: currentLocation))")
+            
+            print("Current Latitude: \(Float(currentLocation.latitude))")
+            
+            print("Current Longtitude: \(Float(currentLocation.longitude))")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to find user's location: \(error.localizedDescription)")
     }
     
     
@@ -171,12 +215,15 @@ class CitiesTableViewController: UITableViewController {
                     // you can user response json or class model
 //                    print("response json : \(description)")
                     self.weatherModelList.append(classModel as! WeatherModel)
-                    self.tableView.reloadData()
+                    self.weatherModelList = self.weatherModelList.sorted(by: { (initial:WeatherModel , next:WeatherModel) -> Bool in return initial.cityName.compare(next.cityName) == .orderedAscending})
+                    
                 } else {
                     print("response error : \(description)")
                 }
             }
         }
+        
+        self.tableView.reloadData()
         
     }
 
