@@ -13,6 +13,8 @@ import CoreLocation
 
 class CitiesTableViewController: UITableViewController, CLLocationManagerDelegate {
     
+    
+    
     fileprivate var weatherSama: Weathersama!
     fileprivate var weatherModelList: [WeatherModel] = []
     var cityToBeDetail: WeatherModel! = nil
@@ -23,9 +25,10 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        
         
         getWeatherMultiCities()
         
@@ -38,7 +41,6 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
         backgroundImageView.addSubview(backgroundImage)
         tableView.backgroundView = backgroundImageView
 
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -49,6 +51,8 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
     override func viewDidAppear(_ animated: Bool) {
         
         // Control of background image animation
+       
+        
         let initialBackgroundImageFrame = backgroundImage.frame
         UIView.animate(withDuration: 60.0, delay: 1.0, options: [.curveEaseOut, .curveEaseIn, .autoreverse, .repeat] , animations: {
             var backgroundImageFrame = self.backgroundImage.frame
@@ -177,26 +181,17 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
                             self.weatherModelList.insert(classModel as! WeatherModel, at: 0)
                         } else {
                             self.weatherModelList[0] = classModel as! WeatherModel
-                            
                         }
                     } else {
                         self.weatherModelList.append(classModel as! WeatherModel)
                     }
-                    self.weatherModelList[0].cityName = "⦿" + self.weatherModelList[0].cityName
-//                    self.weatherModelList[0].coordinate.latitude = self.currentLocation.latitude
-//                    self.weatherModelList[0].coordinate.longitude = self.currentLocation.longitude
-                   
+                    self.weatherModelList[0].cityName = "⦿ " + self.weatherModelList[0].cityName
+
                     self.tableView.reloadData()
                 } else {
                     print("response error : \(description)")
                 }
             }
-            
-            print("Found user's location: \(String(describing: currentLocation))")
-            
-            print("Current Latitude: \(Float(currentLocation.latitude))")
-            
-            print("Current Longtitude: \(Float(currentLocation.longitude))")
         }
     }
     
@@ -213,18 +208,15 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
             weatherSama.weatherByCityId(cityId: index, requestType: .Weather) { (isSuccess, description, classModel) -> () in
                 if isSuccess {
                     // you can user response json or class model
-//                    print("response json : \(description)")
+                    // print("response json : \(description)")
                     self.weatherModelList.append(classModel as! WeatherModel)
                     self.weatherModelList = self.weatherModelList.sorted(by: { (initial:WeatherModel , next:WeatherModel) -> Bool in return initial.cityName.compare(next.cityName) == .orderedAscending})
-                    
                 } else {
                     print("response error : \(description)")
                 }
             }
         }
-        
         self.tableView.reloadData()
-        
     }
 
 }

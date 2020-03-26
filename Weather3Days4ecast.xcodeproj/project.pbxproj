@@ -41,6 +41,7 @@
 		117D44802420E40500A49F65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 117D447E2420E40500A49F65 /* LaunchScreen.storyboard */; };
 		117D448B2420E40600A49F65 /* Weather3Days4ecastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D448A2420E40600A49F65 /* Weather3Days4ecastTests.swift */; };
 		117D44962420E40600A49F65 /* Weather3Days4ecastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D44952420E40600A49F65 /* Weather3Days4ecastUITests.swift */; };
+		11BA5817242C194500D407D0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 11BA5816242C194500D407D0 /* README.md */; };
 		11ECC8B0242211DF0023DE88 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11ECC8AF2422115B0023DE88 /* Default-568h@2x.png */; };
 		11ECC8B324226CEA0023DE88 /* CitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ECC8B224226CEA0023DE88 /* CitiesTableViewController.swift */; };
 		11ECC8B424226CEA0023DE88 /* CitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ECC8B224226CEA0023DE88 /* CitiesTableViewController.swift */; };
@@ -110,6 +111,7 @@
 		117D44912420E40600A49F65 /* Weather3Days4ecastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Weather3Days4ecastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		117D44952420E40600A49F65 /* Weather3Days4ecastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather3Days4ecastUITests.swift; sourceTree = "<group>"; };
 		117D44972420E40600A49F65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11BA5816242C194500D407D0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		11ECC8AF2422115B0023DE88 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		11ECC8B224226CEA0023DE88 /* CitiesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesTableViewController.swift; sourceTree = "<group>"; };
 		11ECC8BE2422DABA0023DE88 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		117D44672420E40300A49F65 = {
 			isa = PBXGroup;
 			children = (
+				11BA5816242C194500D407D0 /* README.md */,
 				117D44722420E40300A49F65 /* Weather3Days4ecast */,
 				117D44892420E40600A49F65 /* Weather3Days4ecastTests */,
 				117D44942420E40600A49F65 /* Weather3Days4ecastUITests */,
@@ -443,6 +446,7 @@
 				116A3EAA2426D57B00898E96 /* fog_night.mp4 in Resources */,
 				116A3EAB2426D57B00898E96 /* hot.mp4 in Resources */,
 				116A3EAC2426D57B00898E96 /* partly_cloud_day.mp4 in Resources */,
+				11BA5817242C194500D407D0 /* README.md in Resources */,
 				116A3EAD2426D57B00898E96 /* partly_cloud_night.mp4 in Resources */,
 				116A3EAE2426D57B00898E96 /* partly_sunny.mp4 in Resources */,
 				116A3EAF2426D57B00898E96 /* rain_day.mp4 in Resources */,

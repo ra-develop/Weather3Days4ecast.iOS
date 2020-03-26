@@ -41,10 +41,10 @@ Used frameworks and CocoaPods:
 
 **ToDo**
 
-1. Add forecas request  - Did
-2. Umprove design of interface - DId
-3. Add search and edit function for Cities listing - In working
-4. Add geolocation function - In working
+1. Add forecas request  - Done
+2. Umprove design of interface - Done
+3. Add search and edit function for Cities listing - In work
+4. Add geolocation function - Done
 
 **License**
 

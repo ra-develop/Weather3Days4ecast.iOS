@@ -79,8 +79,6 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
 
     override func viewDidAppear(_ animated: Bool) {
         
-
-        
         let fileName = getWeatherCondition(weather: selectedCity.weather[0].main, hour: Int(getHourByInterval(timeZone: selectedCityTimeZone! , timeInterval: selectedCity.dt))!)
         
         // Implement video background
@@ -133,6 +131,21 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
         return self.forecastSection.count
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+        view.tintColor = UIColor(hue: 0.57222222, saturation: 1.0, brightness: 0.57, alpha: 0.7)
+//        systemIndigo
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.white
+    }
+
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int){
+        view.tintColor = UIColor(hue: 0.57222222, saturation: 1.0, brightness: 0.57, alpha: 0.7)
+//        view.tintColor = UIColor.systemIndigo
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.white
+    }
+
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = self.forecastSection[section]
         var averageTempDay : Double = 0
@@ -145,6 +158,7 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
         
         let selectedCityToday = getDateByInterval(timeZone: self.selectedCityTimeZone, interval: self.selectedCity.dt).prefix(10)
 
+        // Calculate average temperature and determination of week day
         for listItem in self.forecastModel.list {
             if listItem.dtTxt.hasPrefix(section.0) {
                 let hour : Int = Int(getHourByInterval(timeZone: self.selectedCityTimeZone, timeInterval: listItem.dt))!
@@ -161,10 +175,7 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
                     weekDay = "\(getWeekDayInterval(timeZone: self.selectedCityTimeZone, interval: listItem.dt))"
                 }
             }
-
         }
-        
-
 
         // Round results to decimals 2 sign if count of values != 0
         if countDayTemp != 0 {
@@ -178,15 +189,14 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
             nightTemp = ", Nihgt: \(Float(averageTempNight))ºС"
         } else { nightTemp = "" }
         
-            
-        return weekDay  + dayTemp + nightTemp
+        return weekDay + dayTemp + nightTemp
     }
 
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         let sectionIndex = section + 1
         if sectionIndex < self.forecastSection.count {
             let section = self.forecastSection[sectionIndex]
-            return section.0
+            return "Next: " + section.0
         }
         return "Next forecast will be soon..."
     }
