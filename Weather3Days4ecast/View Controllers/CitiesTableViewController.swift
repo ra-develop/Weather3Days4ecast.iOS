@@ -172,7 +172,7 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
         if (locations.last != nil) {
             currentLocation = locations.last?.coordinate
             weatherSama.weatherByCoordinate(coordinate: currentLocation, requestType: .Weather) { (isSuccess, description, classModel) -> () in
-                if isSuccess {
+                if isSuccess && description != ""{
                     // you can user response json or class model
                     //                    print("response json : \(description)")
                     
@@ -189,7 +189,8 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
 
                     self.tableView.reloadData()
                 } else {
-                    print("response error : \(description)")
+                    
+                    self.present(alertResponseError(description: description), animated: true, completion: nil)
                 }
             }
         }
@@ -206,20 +207,18 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
         weatherSama = Weathersama(appId: APP_ID, temperature: TEMPERATURE_TYPES.Celcius, language: LANGUAGES.English, dataResponse: DATA_RESPONSE.JSON)
         for index in listCities {
             weatherSama.weatherByCityId(cityId: index, requestType: .Weather) { (isSuccess, description, classModel) -> () in
-                if isSuccess {
+                if isSuccess && description != "" {
                     // you can user response json or class model
                     // print("response json : \(description)")
-//                    if classModel {
-//                        <#code#>
-//                    }
                     self.weatherModelList.append(classModel as! WeatherModel)
                     self.weatherModelList = self.weatherModelList.sorted(by: { (initial:WeatherModel , next:WeatherModel) -> Bool in return initial.cityName.compare(next.cityName) == .orderedAscending})
                 } else {
-                    print("response error : \(description)")
+                    self.present(alertResponseError(description: description), animated: true, completion: nil)
                 }
             }
         }
         self.tableView.reloadData()
     }
+
 
 }

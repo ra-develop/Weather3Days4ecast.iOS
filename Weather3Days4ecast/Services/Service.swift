@@ -174,3 +174,14 @@ func getWeatherCondition(weather: String, hour: Int) -> String {
     }
 }
 
+func alertResponseError(description: String)  -> UIAlertController{
+    var descriptionError = description
+    if descriptionError == "" {
+        descriptionError = "Unknown error"
+    }
+    let alert = UIAlertController(title: "Weather response error", message: descriptionError + "\nPlease check network connection", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+    NSLog("The \"OK\" alert occured.")
+    }))
+    return alert
+}

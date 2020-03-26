@@ -307,7 +307,7 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
         // Setup and request list of forecast of cities
         weatherSama = Weathersama(appId: APP_ID, temperature: TEMPERATURE_TYPES.Celcius, language: LANGUAGES.English, dataResponse: DATA_RESPONSE.JSON)
         weatherSama.weatherByCityId(cityId: selectedCity.cityId, requestType: .Forecast) { (isSuccess, description, classModel) -> () in
-            if isSuccess {
+            if isSuccess && description != "" {
                 
                 // Load parsed model form JSON
                 self.forecastModel = classModel as? ForecastModel
@@ -332,7 +332,7 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
                 // reload tableView
                 self.tableView?.reloadData()
             } else {
-                print("response error : \(description)")
+                self.present(alertResponseError(description: description), animated: true, completion: nil)
             }
         }
         
