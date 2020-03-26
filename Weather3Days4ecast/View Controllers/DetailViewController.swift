@@ -133,14 +133,12 @@ class DetailViewController: UIViewController ,  UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
         view.tintColor = UIColor(hue: 0.57222222, saturation: 1.0, brightness: 0.57, alpha: 0.7)
-//        systemIndigo
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = UIColor.white
     }
 
     func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int){
         view.tintColor = UIColor(hue: 0.57222222, saturation: 1.0, brightness: 0.57, alpha: 0.7)
-//        view.tintColor = UIColor.systemIndigo
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = UIColor.white
     }

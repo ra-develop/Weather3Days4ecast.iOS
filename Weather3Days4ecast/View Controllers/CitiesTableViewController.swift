@@ -57,7 +57,7 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
         UIView.animate(withDuration: 60.0, delay: 1.0, options: [.curveEaseOut, .curveEaseIn, .autoreverse, .repeat] , animations: {
             var backgroundImageFrame = self.backgroundImage.frame
             backgroundImageFrame.origin.x += self.backgroundImage.layer.frame.size.width - self.view.bounds.width
-            
+
             self.backgroundImage.frame = backgroundImageFrame
         }, completion: { finished in  self.backgroundImage.frame = initialBackgroundImageFrame  })
                       
@@ -209,6 +209,9 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
                 if isSuccess {
                     // you can user response json or class model
                     // print("response json : \(description)")
+//                    if classModel {
+//                        <#code#>
+//                    }
                     self.weatherModelList.append(classModel as! WeatherModel)
                     self.weatherModelList = self.weatherModelList.sorted(by: { (initial:WeatherModel , next:WeatherModel) -> Bool in return initial.cityName.compare(next.cityName) == .orderedAscending})
                 } else {
