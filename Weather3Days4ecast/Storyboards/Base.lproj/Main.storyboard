@@ -105,6 +105,11 @@
                                 <action selector="Reload:" destination="ZCw-ob-Qia" id="1if-HO-7ZK"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="GF9-eG-IzE">
+                            <connections>
+                                <segue destination="kHx-JY-JXA" kind="show" id="93H-5x-J7r"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicatorLabel" destination="BTY-N2-gHY" id="gaF-So-955"/>
@@ -113,6 +118,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Akg-Vp-gK3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="402.89855072463769" y="-584.59821428571422"/>
+        </scene>
+        <!--Search city-->
+        <scene sceneID="9Iw-W4-ycB">
+            <objects>
+                <tableViewController id="kHx-JY-JXA" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="H7a-Vp-vrD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Enter city's name (, country code) or post code" id="1j4-Xw-a0Q">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="vEH-su-2Wq">
+                                <rect key="frame" x="0.0" y="72" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vEH-su-2Wq" id="slO-91-f4F">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kHx-JY-JXA" id="Zzd-vv-xm6"/>
+                            <outlet property="delegate" destination="kHx-JY-JXA" id="LSv-UR-fJc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Search city" id="vxr-jc-uhb"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d9S-nC-bhE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1317" y="-581"/>
         </scene>
         <!--Detail of Weather-->
         <scene sceneID="tne-QT-ifu">

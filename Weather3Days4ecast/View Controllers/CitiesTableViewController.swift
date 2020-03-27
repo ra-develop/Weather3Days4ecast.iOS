@@ -238,7 +238,6 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
     }
     
     func saveCitiesListItems() {
-//        print("File will be save to: \(dataFilePath())")
         (listCities as NSArray).write(to: dataFilePath(), atomically: true)
     }
     
