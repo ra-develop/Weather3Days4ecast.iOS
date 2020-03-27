@@ -13,6 +13,7 @@ import CoreLocation
 
 class CitiesTableViewController: UITableViewController, CLLocationManagerDelegate {
     
+    @IBOutlet var activityIndicatorLabel: UIActivityIndicatorView!
     
     
     fileprivate var weatherSama: Weathersama!
@@ -186,7 +187,7 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
                         self.weatherModelList.append(classModel as! WeatherModel)
                     }
                     self.weatherModelList[0].cityName = "⦿ " + self.weatherModelList[0].cityName
-
+                    self.activityIndicatorLabel.stopAnimating()
                     self.tableView.reloadData()
                 } else {
                     
