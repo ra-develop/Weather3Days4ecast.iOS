@@ -26,7 +26,7 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        loadCitiesListItems()
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -130,6 +130,7 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
             listCities.removeAll(where: {$0 == weatherModelList[indexPath.row].cityId})
             weatherModelList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            saveCitiesListItems()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
@@ -227,5 +228,21 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
         self.tableView.reloadData()
     }
 
-
+    func documetsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func dataFilePath() -> URL {
+        return documetsDirectory().appendingPathComponent("Cities.plist")
+    }
+    
+    func saveCitiesListItems() {
+//        print("File will be save to: \(dataFilePath())")
+        (listCities as NSArray).write(to: dataFilePath(), atomically: true)
+    }
+    
+    func loadCitiesListItems() {
+        listCities = NSArray(contentsOf: dataFilePath()) as? [Int] ?? []
+    }
 }

@@ -46,7 +46,7 @@ Used frameworks and CocoaPods:
 3. Add delete function fot  list of Cities = Done
 4. Add search and add function for list of Cities - In work
 5. Add geolocation function - Done
-6. Add save list od Cities to app data - In work
+6. Add save and load list of Cities to app documents data - Done
 
 **License**
 
