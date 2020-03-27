@@ -114,25 +114,28 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
         self.tableView.reloadData()
     }
     
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            listCities.removeAll(where: {$0 == weatherModelList[indexPath.row].cityId})
+            weatherModelList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
+        self.tableView.reloadData()
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -176,15 +179,18 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
                 if isSuccess && description != ""{
                     // you can user response json or class model
                     //                    print("response json : \(description)")
-                    
+                    let localCityWeatherModel = classModel as! WeatherModel
                     if !self.weatherModelList.isEmpty {
                         if self.weatherModelList[0].cityName.prefix(1) != "⦿" {
-                            self.weatherModelList.insert(classModel as! WeatherModel, at: 0)
+                            listCities.insert(localCityWeatherModel.cityId, at: 0)
+                            self.weatherModelList.insert(localCityWeatherModel, at: 0)
                         } else {
-                            self.weatherModelList[0] = classModel as! WeatherModel
+                            listCities[listCities.first(where: {$0 == self.weatherModelList[0].cityId})!] = localCityWeatherModel.cityId
+                            self.weatherModelList[0] = localCityWeatherModel
                         }
                     } else {
-                        self.weatherModelList.append(classModel as! WeatherModel)
+                        listCities.append(localCityWeatherModel.cityId)
+                        self.weatherModelList.append(localCityWeatherModel)
                     }
                     self.weatherModelList[0].cityName = "⦿ " + self.weatherModelList[0].cityName
                     self.activityIndicatorLabel.stopAnimating()
