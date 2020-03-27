@@ -185,7 +185,7 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
                             listCities.insert(localCityWeatherModel.cityId, at: 0)
                             self.weatherModelList.insert(localCityWeatherModel, at: 0)
                         } else {
-                            listCities[listCities.first(where: {$0 == self.weatherModelList[0].cityId})!] = localCityWeatherModel.cityId
+                            listCities[0] = localCityWeatherModel.cityId
                             self.weatherModelList[0] = localCityWeatherModel
                         }
                     } else {

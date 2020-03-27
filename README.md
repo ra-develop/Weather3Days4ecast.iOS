@@ -44,8 +44,9 @@ Used frameworks and CocoaPods:
 1. Add forecas request  - Done
 2. Umprove design of interface - Done
 3. Add delete function fot  list of Cities = Done
-3. Add search and add function for list of Cities - In work
-4. Add geolocation function - Done
+4. Add search and add function for list of Cities - In work
+5. Add geolocation function - Done
+6. Add save list od Cities to app data - In work
 
 **License**
 
