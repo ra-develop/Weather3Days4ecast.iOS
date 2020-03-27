@@ -39,11 +39,12 @@ Used frameworks and CocoaPods:
 3. LatLongToTimezone - determitation of TimeZone based on coordinates
 
 
-**ToDo**
+**ToDo Road map**
 
 1. Add forecas request  - Done
 2. Umprove design of interface - Done
-3. Add search and edit function for Cities listing - In work
+3. Add delete function fot  list of Cities = Done
+3. Add search and add function for list of Cities - In work
 4. Add geolocation function - Done
 
 **License**
