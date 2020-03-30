@@ -185,3 +185,21 @@ func alertResponseError(description: String)  -> UIAlertController{
     }))
     return alert
 }
+
+// Save aray list of cities to local storage
+func documetsDirectory() -> URL {
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    return paths[0]
+}
+
+func dataFilePath() -> URL {
+    return documetsDirectory().appendingPathComponent("Cities.plist")
+}
+
+func saveCitiesListItems() {
+    (listCities as NSArray).write(to: dataFilePath(), atomically: true)
+}
+
+func loadCitiesListItems() {
+    listCities = NSArray(contentsOf: dataFilePath()) as? [Int] ?? []
+}

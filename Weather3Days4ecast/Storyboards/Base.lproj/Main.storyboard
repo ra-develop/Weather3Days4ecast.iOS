@@ -171,6 +171,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="s7s-6k-UOR"/>
                     </view>
+                    <navigationItem key="navigationItem" id="96I-uo-lZN"/>
                     <connections>
                         <outlet property="searchBar" destination="i73-c6-8hv" id="sBe-WR-L3L"/>
                         <outlet property="tableView" destination="VfT-jt-xMa" id="edt-Zb-JDs"/>

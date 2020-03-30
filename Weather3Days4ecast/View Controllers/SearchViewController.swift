@@ -12,6 +12,7 @@ import Alamofire
 
 class SearchViewController: UIViewController,  UITableViewDataSource, UITableViewDelegate,  UISearchBarDelegate {
     
+    static var instanceCitiesTableViewController: CitiesTableViewController!
     
     var searchController: UISearchController!
     
@@ -49,6 +50,15 @@ class SearchViewController: UIViewController,  UITableViewDataSource, UITableVie
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Selected city: \(self.searchData.list[indexPath.row].cityName), CityID is: \(String(describing: self.searchData.list[indexPath.row].cityId))")
+        listCities.append(self.searchData.list[indexPath.row].cityId)
+        saveCitiesListItems()
+        print(listCities)
+        SearchViewController.instanceCitiesTableViewController.getWeatherMultiCities()
+        dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -72,7 +82,6 @@ class SearchViewController: UIViewController,  UITableViewDataSource, UITableVie
     }
 
     internal func requestAPI(url: String, completion: @escaping(Bool, String, AnyObject?) -> ()) {
-        
         Alamofire.request(url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!).responseJSON { response in
             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8)  {
                     let resultObj = SearchCitiesResult()

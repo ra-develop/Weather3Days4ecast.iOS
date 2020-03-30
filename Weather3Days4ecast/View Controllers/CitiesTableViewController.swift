@@ -23,16 +23,18 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
     let locationManager = CLLocationManager()
     var currentLocation: CLLocationCoordinate2D!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadCitiesListItems()
-        
+        // Setup location manager
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
-        getWeatherMultiCities()
+        // Load list of Cities from stored file
+        loadCitiesListItems()
         
+        // Setup title of screen
         self.title = getCurentDateWithWeekDay()
      
         // Loading and framing background image
@@ -52,19 +54,24 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
     override func viewDidAppear(_ animated: Bool) {
         
         // Control of background image animation
-       
-        
         let initialBackgroundImageFrame = backgroundImage.frame
         UIView.animate(withDuration: 60.0, delay: 1.0, options: [.curveEaseOut, .curveEaseIn, .autoreverse, .repeat] , animations: {
             var backgroundImageFrame = self.backgroundImage.frame
             backgroundImageFrame.origin.x += self.backgroundImage.layer.frame.size.width - self.view.bounds.width
-
             self.backgroundImage.frame = backgroundImageFrame
         }, completion: { finished in  self.backgroundImage.frame = initialBackgroundImageFrame  })
-                      
-        locationManager.requestLocation()
-
+        
+        // Get weather info from web
+//        getWeatherMultiCities()
+             
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+        getWeatherMultiCities()
+//        tableView.reloadData()
+    }
+    
 
     // MARK: - Table view data source
 
@@ -109,9 +116,10 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
 
     }
     
+    
     @IBAction func Reload(_ sender: Any) {
-        locationManager.requestLocation()
-        self.tableView.reloadData()
+        // Get waether info from web
+        getWeatherMultiCities()
     }
     
     
@@ -160,6 +168,7 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        SearchViewController.instanceCitiesTableViewController = self
         if (segue.identifier == "ShowDetail") {
             let indexPath =  self.tableView.indexPathForSelectedRow
             let cityWeatherItem : WeatherModel = weatherModelList[indexPath!.row]
@@ -170,7 +179,7 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
         }
     }
 
-    // Getting user location of geo position.
+    // Getting user location of geo position and determination local weather.
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -183,14 +192,14 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
                     let localCityWeatherModel = classModel as! WeatherModel
                     if !self.weatherModelList.isEmpty {
                         if self.weatherModelList[0].cityName.prefix(1) != "⦿" {
-                            listCities.insert(localCityWeatherModel.cityId, at: 0)
+//                            listCities.insert(localCityWeatherModel.cityId, at: 0)
                             self.weatherModelList.insert(localCityWeatherModel, at: 0)
                         } else {
-                            listCities[0] = localCityWeatherModel.cityId
+//                            listCities[0] = localCityWeatherModel.cityId
                             self.weatherModelList[0] = localCityWeatherModel
                         }
                     } else {
-                        listCities.append(localCityWeatherModel.cityId)
+//                        listCities.append(localCityWeatherModel.cityId)
                         self.weatherModelList.append(localCityWeatherModel)
                     }
                     self.weatherModelList[0].cityName = "⦿ " + self.weatherModelList[0].cityName
@@ -213,6 +222,7 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
     func getWeatherMultiCities() {
         // Setup and request list of weather of cities
         weatherSama = Weathersama(appId: APP_ID, temperature: TEMPERATURE_TYPES.Celcius, language: LANGUAGES.English, dataResponse: DATA_RESPONSE.JSON)
+        self.weatherModelList = []
         for index in listCities {
             weatherSama.weatherByCityId(cityId: index, requestType: .Weather) { (isSuccess, description, classModel) -> () in
                 if isSuccess && description != "" {
@@ -225,23 +235,9 @@ class CitiesTableViewController: UITableViewController, CLLocationManagerDelegat
                 }
             }
         }
+        // Determination of location and load weather info lor local place
+        locationManager.requestLocation()
         self.tableView.reloadData()
     }
-
-    func documetsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
     
-    func dataFilePath() -> URL {
-        return documetsDirectory().appendingPathComponent("Cities.plist")
-    }
-    
-    func saveCitiesListItems() {
-        (listCities as NSArray).write(to: dataFilePath(), atomically: true)
-    }
-    
-    func loadCitiesListItems() {
-        listCities = NSArray(contentsOf: dataFilePath()) as? [Int] ?? []
-    }
 }
