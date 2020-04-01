@@ -47,6 +47,9 @@
 		11B3CC7424302075008EDDD0 /* CitiesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B3CC7324302075008EDDD0 /* CitiesListModel.swift */; };
 		11B3CC7524302075008EDDD0 /* CitiesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B3CC7324302075008EDDD0 /* CitiesListModel.swift */; };
 		11B3CC7624302075008EDDD0 /* CitiesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B3CC7324302075008EDDD0 /* CitiesListModel.swift */; };
+		11B3CC782434F451008EDDD0 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B3CC772434F451008EDDD0 /* SearchCell.swift */; };
+		11B3CC792434F451008EDDD0 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B3CC772434F451008EDDD0 /* SearchCell.swift */; };
+		11B3CC7A2434F451008EDDD0 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B3CC772434F451008EDDD0 /* SearchCell.swift */; };
 		11BA5817242C194500D407D0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 11BA5816242C194500D407D0 /* README.md */; };
 		11ECC8B0242211DF0023DE88 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11ECC8AF2422115B0023DE88 /* Default-568h@2x.png */; };
 		11ECC8B324226CEA0023DE88 /* CitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ECC8B224226CEA0023DE88 /* CitiesTableViewController.swift */; };
@@ -119,6 +122,7 @@
 		117D44972420E40600A49F65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11B3CC6F242FFB00008EDDD0 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		11B3CC7324302075008EDDD0 /* CitiesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListModel.swift; sourceTree = "<group>"; };
+		11B3CC772434F451008EDDD0 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		11BA5816242C194500D407D0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		11ECC8AF2422115B0023DE88 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		11ECC8B224226CEA0023DE88 /* CitiesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesTableViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 			children = (
 				1151C1D32423C37600A54E90 /* CityWeatherCell.swift */,
 				116A3EC624277F3200898E96 /* ForecastTableViewCell.swift */,
+				11B3CC772434F451008EDDD0 /* SearchCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -599,6 +604,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11B3CC70242FFB00008EDDD0 /* SearchViewController.swift in Sources */,
+				11B3CC782434F451008EDDD0 /* SearchCell.swift in Sources */,
 				11ECC8BF2422DABA0023DE88 /* Constants.swift in Sources */,
 				11B3CC7424302075008EDDD0 /* CitiesListModel.swift in Sources */,
 				1151C1D42423C37600A54E90 /* CityWeatherCell.swift in Sources */,
@@ -617,6 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				116A3EC824277F3200898E96 /* ForecastTableViewCell.swift in Sources */,
+				11B3CC792434F451008EDDD0 /* SearchCell.swift in Sources */,
 				114A21B62424BC5300130233 /* Service.swift in Sources */,
 				11B3CC71242FFB00008EDDD0 /* SearchViewController.swift in Sources */,
 				11B3CC7524302075008EDDD0 /* CitiesListModel.swift in Sources */,
@@ -636,6 +643,7 @@
 				11B3CC72242FFB00008EDDD0 /* SearchViewController.swift in Sources */,
 				11ECC8B524226CEA0023DE88 /* CitiesTableViewController.swift in Sources */,
 				1151C1D62423C37600A54E90 /* CityWeatherCell.swift in Sources */,
+				11B3CC7A2434F451008EDDD0 /* SearchCell.swift in Sources */,
 				11B3CC7624302075008EDDD0 /* CitiesListModel.swift in Sources */,
 				116A3EC924277F3200898E96 /* ForecastTableViewCell.swift in Sources */,
 				117D44962420E40600A49F65 /* Weather3Days4ecastUITests.swift in Sources */,

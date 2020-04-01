@@ -43,19 +43,40 @@ class SearchViewController: UIViewController,  UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
         
-        cell.textLabel?.text = self.searchData.list[indexPath.row].cityName
+        
+        // TODO setup cells for result of found cities
+//        cell.textLabel?.text = self.searchData.list[indexPath.row].cityName
+        
+        let cityWeatherItem : CitiesListModel = self.searchData.list[indexPath.row]
+                   
+        cell.cityLabel.text = cityWeatherItem.cityName
+        cell.countryLabel?.text = cityWeatherItem.sys.country
+        cell.tempLabel?.text = (cityWeatherItem.main.temperature != nil) ? "\(Float(cityWeatherItem.main.temperature)) ºC" : "---"
+        cell.descriptionLabel?.text = cityWeatherItem.weather[0].main
+            
+                
+        getImageFromWeb(ICON_URL + cityWeatherItem.weather[0].icon + ICON_FILE_EXT) { (image) in
+            if let image = image {
+                cell.iconView.image = image
+            } // if you use an Else statement, it will be in background
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Selected city: \(self.searchData.list[indexPath.row].cityName), CityID is: \(String(describing: self.searchData.list[indexPath.row].cityId))")
+        
+        // add selected cityID to list of city
         listCities.append(self.searchData.list[indexPath.row].cityId)
+        
+        // Save new list cities
         saveCitiesListItems()
-        print(listCities)
+        
+        //Update datasource for CitiesTableView
         SearchViewController.instanceCitiesTableViewController.getWeatherMultiCities()
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -70,9 +91,9 @@ class SearchViewController: UIViewController,  UITableViewDataSource, UITableVie
     */
 
 
-    
+    // Find request to Open Weather web site
     func findByName(searchName: String, completion: @escaping(Bool, String, AnyObject) -> ()?) {
-        startRequest(url: "\(FIND_URL)\(searchName)&appid=\(APP_ID)", completion: completion)
+        startRequest(url: "\(FIND_URL)\(searchName)&appid=\(APP_ID)\(TEMPERATURE_TYPES.Celcius.rawValue)", completion: completion)
     }
     
     internal func startRequest(url: String, completion: @escaping(Bool, String, AnyObject) -> ()?) {
@@ -85,7 +106,6 @@ class SearchViewController: UIViewController,  UITableViewDataSource, UITableVie
         Alamofire.request(url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!).responseJSON { response in
             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8)  {
                     let resultObj = SearchCitiesResult()
-                
                     resultObj.parseJSON(jsonSerialized: response.result.value as AnyObject)
                     completion(true, utf8Text, resultObj)
             } else {
@@ -102,11 +122,10 @@ class SearchViewController: UIViewController,  UITableViewDataSource, UITableVie
                 // you can user response json or class model
                 // print("response json : \(description)")
                 self.searchData = (classModel as? SearchCitiesResult)!
-                for item in self.searchData.list {
-                    print("Found city: \(String(item.cityName)) ,\(String(item.sys.country))")
-                }
-                print("Count of found cities from web site: \(self.searchData.count)")
-                print("Count of found cities in memory: \(self.searchData.list.count)")
+//                for item in self.searchData.list {
+//                    print("Found city: \(String(item.cityName)) ,\(String(item.sys.country))")
+//                }
+
                 self.tableView.reloadData()
             } else {
                 self.present(alertResponseError(description: description), animated: true, completion: nil)
