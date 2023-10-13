@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-Weather3Days4ecast/Pods-Weather3Days4ecast-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/LatLongToTimezone/LatLongToTimezone.framework
+${BUILT_PRODUCTS_DIR}/SwiftVideoBackground/SwiftVideoBackground.framework
+${BUILT_PRODUCTS_DIR}/Weathersama/Weathersama.framework
